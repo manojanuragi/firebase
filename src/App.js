@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
 
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './components/Home';
+import Login from "./Login/Login";
+import Signup from "./Signup/Signup";
+import { useEffect, useState } from "react";
+import { auth } from "./firebase";
 function App() {
+  const [userName, setUserName]= useState("");
+  useEffect(()=>{
+    auth.onAuthStateChanged((user)=>{
+      if(user){
+        console.log(user.displayName);
+        setUserName(user.displayName);
+      }else{
+        setUserName("");
+      }
+      
+    });
+  },[]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <BrowserRouter>
+     <Routes>
+      <Route  path="/" element={<Home name={userName}/>}/>
+      <Route  path="/login" element={<Login/>}/>
+      <Route  path="/signup" element={<Signup/>}/>
+     </Routes>
+     </BrowserRouter>
+     
     </div>
   );
 }

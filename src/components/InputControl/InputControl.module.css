@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.container label{
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #504949e2;
+    font-family: 'Times New Roman' ;
+}
+
+.container input{
+    border-radius: 5px;
+    border:1px solid #8e8484;
+    outline: none;
+    padding: 8PX 15PX;
+    color: #000;
+   
+}
+
+.container input:hover{
+    cursor: pointer;
+    border-color: #2d2727;
+    background-color: #ede8e86f ;
+}
+.container input:focus{
+    cursor: pointer;
+    border-color: #b744b5;
+    
+}
